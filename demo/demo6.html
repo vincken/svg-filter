@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>x射线</title>
+</head>
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+        <defs>
+            <filter id="shadow">
+                <feComponentTransfer>
+                    <feFuncR type="table" tableValues="0,0.02989382602752058,0.05986313025803788,0.09036077075423433,0.12168715760403055,0.15420305329630632,0.18818252439550168,0.22398161071101647,0.26186969521661063,0.3022989458428441,0.3455577679346369,0.39214378115578863,0.4425746262023793,0.49743897957144867,0.5574685640600765,0.6235740666709829,0.6969579967516071,0.7791955864085089,0.8724981779336077,0.98"></feFuncR>
+                    <feFuncG type="table" tableValues="0,0.0652968375822235,0.1261196842599943,0.18330937571748818,0.23759881456782236,0.28963842628216435,0.33987761501944885,0.38867548062864843,0.436403932212993,0.48331520519879745,0.5296403208659568,0.575690539604061,0.6215241222224376,0.6673814467682837,0.7133977432040323,0.7597530813024178,0.806465282372808,0.8537579485322104,0.9017496236614575,0.9504411729869064,1"></feFuncG>
+                    <feFuncB type="table" tableValues="0,0.05144088053125098,0.10239778404799614,0.15260994169902212,0.20179313180226707,0.24975221906598088,0.29631171322588246,0.3414371471562214,0.38500840958493565,0.4270977929687121,0.46776229093220734,0.5071150786849836,0.5452526016821975,0.5823012304686923,0.6183896151474056,0.6536180601469004,0.6880650712479259,0.7218814900936701,0.7550798719061644,0.787754297561127,0.8200000000000001"></feFuncB>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+        <g filter="url(#shadow)" transform="scale(.5)">
+            <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../image/1.jpg"></image>
+        </g>
+    </svg>
+    <script>
+        //60
+        function getTable(xProcess) {
+            if (0 < xProcess) {
+                const deal = (value) => {
+                    return parseFloat((value * xProcess / 100).toFixed(2))
+                };
+                const red = [0, .2, 0, -.1, 0].map(deal);
+                const green = [0, .1, 0, -.1, 0].map(deal);
+                const blue = [.2, 0, .2].map(deal);
+                return [
+                    [
+                        [0, 0],
+                        [.3, .3 - red[1]],
+                        [.7, .7 - red[3]],
+                        [1, 1]
+                    ],
+                    [
+                        [0, 0],
+                        [.25, .25 - green[1]],
+                        [.75, .75 - green[3]],
+                        [1, 1]
+                    ],
+                    [
+                        [0, blue[0]],
+                        [0 + 2 / 3 * .5, c[0] + 2 / 3 * (.5 - blue[0])],
+                        [1 + 2 / 3 * -.5, 1 - c[2] + 2 / 3 * (.5 - (1 - blue[2]))],
+                        [1, 1 - blue[2]]
+                    ]
+                ];
+            } else {
+                const deal = (value) => {
+                    return parseFloat((value * xProcess / -100).toFixed(2));
+                };
+                const red = [0, .2, .5, -.05].map(deal);
+                const green = [0, -.15, 0, 0].map(deal);
+                const blue = [0, -.01, 0, .3].map(deal);
+                return [
+                    [
+                        [0, 0],
+                        [.3, .3 - red[1]],
+                        [.7, .7 - red[2]],
+                        [.95, .95 - red[3]]
+                    ],
+                    [
+                        [0, 0],
+                        [.25, .25 - green[1]],
+                        [.6, .6],
+                        [1, 1]
+                    ],
+                    [
+                        [0, 0],
+                        [.3, .3 - blue[1]],
+                        [.5, .5],
+                        [1, 1 - blue[3]]
+                    ]
+                ];
+            }
+
+        }
+
+        function getRange(coord1, coord2, coord3, coord4) {
+            function getXY(times, arr) {
+                const double = times * times;
+                const offset = 1 - times;
+                const offsets = offset * offset;
+                return arr[0] * offsets * offset + 3 * arr[1] * offsets * times + 3 * arr[2] * offset * double + arr[3] * double * times;
+            }
+            const coords = [];
+            for (let x, y, sum = 0; 1 > sum; sum += 5e-5) {
+                x = getXY(sum, [coord1.x, coord2.x, coord3.x, coord4.x]);
+                y = getXY(sum, [coord1.y, coord2.y, coord3.y, coord4.y]);
+                coords.push({
+                    x,
+                    y
+                });
+            }
+            const result = [{
+                x: coord1.x,
+                y: coord1.y
+            }];
+            let sum = .05;
+            let coord = null;
+            coords.forEach(function(crd) {
+                if (coord && crd.x > sum) {
+                    result.push(coord);
+                    sum += .05;
+                }
+                coord = crd;
+            });
+            result.push({
+                x: coord4.x,
+                y: coord4.y
+            });
+            return result;
+        }
+        const table = getTable(-60);
+        const result = table.reduce((result, map) => {
+            const range = getRange({
+                x: map[0][0],
+                y: map[0][1]
+            }, {
+                x: map[1][0],
+                y: map[1][1]
+            }, {
+                x: map[2][0],
+                y: map[2][1]
+            }, {
+                x: map[3][0],
+                y: map[3][1]
+            }).map((coord) => coord.y);
+            result.push(range.join(','));
+            return result;
+        }, []);
+        console.log(result);
+    </script>
+</body>
+
+</html>

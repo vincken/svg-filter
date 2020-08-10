@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>亮度</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+        <defs>
+            <filter id="shadow">
+                <!-- <feColorMatrix type="matrix"
+                values="
+                    0 0 0 0 0.9019
+                    0 0 0 0 0.2901960784313726
+                    0 0 0 0 0.11372549019607843
+                    0 0 0 1 0
+                ">
+                </feColorMatrix> -->
+                <feComponentTransfer> 
+                    <feFuncR type="linear" slope="1" intercept="-0.5"></feFuncR>
+                    <feFuncG type="linear" slope="1" intercept="-0.5"></feFuncG>
+                    <feFuncB type="linear" slope="1" intercept="-0.5"></feFuncB>
+                </feComponentTransfer>
+                <feComponentTransfer>
+                    <feFuncR type="linear" slope="1" intercept="0.5"></feFuncR>
+                    <feFuncG type="linear" slope="1" intercept="0.5"></feFuncG>
+                    <feFuncB type="linear" slope="1" intercept="0.5"></feFuncB>
+                </feComponentTransfer>                
+
+            </filter>
+        </defs>
+        <g filter="url(#shadow)" transform="scale(.5)">
+            <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../image/1.jpg"></image>
+        </g>
+    </svg>
+</body>
+</html>

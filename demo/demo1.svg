@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+    <defs>
+        <filter id="shadow" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur"></feGaussianBlur>
+            <feOffset in="blur" dx="10" dy="10" result="offsetBlur"></feOffset>
+            <feMerge>
+                <feMergeNode in="offsetBlur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g filter="url(#shadow)">
+        <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../image/2.png"></image>
+    </g>
+</svg>

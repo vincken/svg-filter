@@ -1,0 +1,11 @@
+<svg width="1200" height="799" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="spotlight">
+     <feGaussianBlur stdDeviation="5" in="SourceAlpha" result="BLUR"/> <!-- We then define a lighting effect with a point light that is positioned at virtual 3D coordinates x: 40px, y: -30px, z: 200px: --> <feSpecularLighting surfaceScale="6" specularConstant="1" specularExponent="30" lighting-color="#white" in="BLUR" result="SPECULAR"> <fePointLight x="40" y="-30" z="200" /> </feSpecularLighting> <!-- We cut off the parts that overlap the source graphic… --> <feComposite operator="in" in="SPECULAR" in2="SourceAlpha" result="COMPOSITE"/> <!-- … and then merge source graphic and lighting effect: --> <feMerge> <feMergeNode in="SourceGraphic" /> <feMergeNode in="COMPOSITE"/> </feMerge>
+    </filter>
+  </defs>
+
+  <image xlink:href="../image/1.jpg" x="10%" y="10%"
+      width="80%" height="80%" style="filter:url(#spotlight);"/>
+</svg>

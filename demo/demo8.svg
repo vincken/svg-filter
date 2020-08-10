@@ -1,0 +1,11 @@
+<svg width="1200" height="799" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="translate(200 200)">
+    <defs>
+        <pattern id="tile" x="0" y="0" width="584" height="407" patternUnits="userSpaceOnUse">
+            <image xlink:href="../image/pattern.jpg" x="-62" width="584" height="407" />
+        </pattern>
+    </defs>
+    <g fill="url(#tile)" >
+        <rect width="100" height="100" />
+        <rect width="100" height="100" x="100" y="100"/>
+    </g>
+</svg>

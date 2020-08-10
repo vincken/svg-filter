@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+    <defs>
+        <filter id="shadow" width="200%" height="200%">
+            <feColorMatrix type="matrix"
+            values="
+                0 0 0 0 0
+                0 0 0 0.9 0
+                0 0 0 0.9 0
+                0 0 0 1 0
+            ">
+            </feColorMatrix>
+            <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
+            <feOffset in="blur" dx="40" dy="40" result="offsetBlur"></feOffset>
+            <feMerge>
+                <feMergeNode in="offsetBlur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g filter="url(#shadow)">
+       <text x="100" y="100" font-size="30">
+           嘻嘻嘻哈哈哈
+       </text> 
+    </g>
+</svg>

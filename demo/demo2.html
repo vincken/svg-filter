@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对比度</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+        <defs>
+            <filter id="shadow">
+                <feComponentTransfer>
+                    <feFuncR type="linear" slope="0.6017786561264823" intercept="0.19911067193675885"></feFuncR>
+                    <feFuncG type="linear" slope="0.6017786561264823 " intercept="0.19911067193675885"></feFuncG>
+                    <feFuncB type="linear" slope="0.6017786561264823 " intercept="0.19911067193675885"></feFuncB>
+                </feComponentTransfer>
+
+            </filter>
+        </defs>
+        <g filter="url(#shadow)" transform="scale(.5)">
+            <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../image/1.jpg"></image>
+        </g>
+    </svg>
+    <script>
+        const contrast = -0.25;
+        const slope = 1.015 * (contrast + 1.0) / (1.0 * (1.015 - contrast));
+        const intercept = -0.5*contrastF + 0.5;
+        console.log(slope, intercept);
+    </script>
+</body>
+</html>

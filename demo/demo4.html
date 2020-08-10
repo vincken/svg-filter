@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>色彩</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+        <defs>
+            <filter id="shadow">
+                <!-- <feComponentTransfer result="colorMask">
+                    <feFuncR type="linear" slope="0" intercept="0.9019"></feFuncR>
+                    <feFuncG type="linear" slope="0" intercept="0.2901960784313726"></feFuncG>
+                    <feFuncB type="linear" slope="0" intercept="0.11372549019607843"></feFuncB>
+                    <feFuncA type="linear" slope="0" intercept="0.2"></feFuncA>
+                </feComponentTransfer>-->
+                <feFlood flood-color="rgba(0,0,0,.8)" result="a"></feFlood>
+                <!-- <feMerge>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                    <feMergeNode in="a"></feMergeNode>
+                </feMerge> -->
+                <feComposite in="a" in2="SourceGraphic"></feComposite>
+            </filter>
+        </defs>
+        <g filter="url(#shadow)" transform="scale(.5)">
+            <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../image/1.jpg"></image>
+        </g>
+    </svg>
+    <script>
+    </script>
+</body>
+</html>
