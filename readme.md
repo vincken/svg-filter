@@ -17,13 +17,13 @@
 
 原图：
 
-![image](http://vincken.top/svg/filter/image/shadow_origin.png)
+![image](image/shadow_origin.png)
 
 应用滤镜后：
 
-![image](http://vincken.top/svg/filter/image/shadow_filter.png)
+![image](image/shadow_filter.png)
 
-[demo](http://vincken.top/svg/filter/demo/demo1.svg)
+[demo](https://vincken.github.io/svg-filter/demo/demo1.svg)
 
 起始和结束 <filter>标记之间就是执行我们想要的操作的滤镜基元，通常以fe开头，代表filter。
 
@@ -71,7 +71,7 @@ feColorMatrix元素允许我们以一种非常通用的方式改变颜色值。�
 
 注意，这个例子中并没有一个用作这个基元输人的in属性，默认使用SourceGraphic。这个基元也没有result属性。这意味着这个颜色矩阵操作的输出只用于下一个滤镜基元的隐性输入。如果使用这种快捷方式，那么下一个滤镜基元一定不能有in属性。
 
-[demo](http://vincken.top/svg/filter/demo/demo2.svg)
+[demo](https://vincken.github.io/svg-filter/demo/demo2.svg)
 
 该例子使用的是最通用的一种颜色矩阵，type属性还有另外三个值，分别是hueRotate、saturate和luminaceToAlpha。每个内置的矩阵都完成一个特定的视觉任务，并且都有自己的指定values的方式，此处不详细介绍。
 
@@ -83,7 +83,7 @@ feColorMatrix元素允许我们以一种非常通用的方式改变颜色值。�
 
 最常用的type属性为linear，它会把当前颜色分量值C放到公式slope * C + intercept中，intercept为结果提供了一个基准值，slope是一个简单的比例因子。
 
-[demo](http://vincken.top/svg/filter/demo/demo4.svg)
+[demo](https://vincken.github.io/svg-filter/demo/demo4.svg)
 
 惯例，linear也只是最简单的一种线性类型，还有gamma、table、discrete这三种类型，用于实现更为复杂的颜色算法。
 ### <feImage>
@@ -91,35 +91,35 @@ feColorMatrix元素允许我们以一种非常通用的方式改变颜色值。�
 
 下面为利用SVG矩形的渐变色实现光晕的例子:
 
-[demo](http://vincken.top/svg/filter/demo/demo5.svg)
+[demo](https://vincken.github.io/svg-filter/demo/demo5.svg)
 
 ### 总结
 <filter>元素包含一系列滤镜基元，每个都接受一个或多个输入，同时提供了唯一的结果给其他滤镜使用，一系列滤镜中最后一个滤镜的结果会呈现到最终的图形上。我们用x、y、width、height属性指定应用滤镜的画布的尺寸。用filterUnits指定用来定义滤镜范围的单位，用primitiveUnits为滤镜基元中的各种长度值指定坐标系统。
 
-![image](http://vincken.top/svg/filter/image/sum.png)
+![image](image/sum.png)
 ### 附录
 各种常见的滤镜效果应用：
 
 亮度：
-[demo](http://vincken.top/svg/filter/demo/demo1.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo1.html)
 
 对比度：
-[demo](http://vincken.top/svg/filter/demo/demo2.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo2.html)
 
 饱和度：
-[demo](http://vincken.top/svg/filter/demo/demo3.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo3.html)
 
 色彩：
-[demo](http://vincken.top/svg/filter/demo/demo4.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo4.html)
 
 模糊:
-[demo](http://vincken.top/svg/filter/demo/demo9.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo9.html)
 
 锐化：
-[demo](http://vincken.top/svg/filter/demo/demo5.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo5.html)
 
 x射线:
-[demo](http://vincken.top/svg/filter/demo/demo6.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo6.html)
 
 晕影:
-[demo](http://vincken.top/svg/filter/demo/demo7.html)
+[demo](https://vincken.github.io/svg-filter/demo/demo7.html)
